@@ -35,9 +35,11 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3, duration: 1 }}
-          className="mt-6 font-display text-xs uppercase tracking-[0.5em] text-foreground/60"
+          className="mt-6 max-w-md font-display text-[11px] uppercase leading-relaxed tracking-[0.4em] text-foreground/70"
         >
-          Mariage
+          Vous êtes cordialement invités à
+          <br />
+          célébrer le mariage de
         </motion.p>
 
         <motion.h1
@@ -47,7 +49,7 @@ export function Hero() {
           className="mt-4 flex flex-col items-center gap-2 leading-none text-gradient-gold"
         >
           <span className="font-display text-6xl font-light tracking-wide sm:text-7xl md:text-8xl">Rachida</span>
-          <span className="font-script text-4xl opacity-80 sm:text-5xl md:text-6xl">and</span>
+          <span className="font-script text-5xl leading-none opacity-90 sm:text-6xl md:text-7xl">&amp;</span>
           <span className="font-display text-6xl font-light tracking-wide sm:text-7xl md:text-8xl">Amine</span>
         </motion.h1>
 
@@ -62,9 +64,11 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5, duration: 1 }}
-          className="max-w-xl font-display text-lg italic leading-relaxed text-foreground/80 sm:text-xl"
+          className="max-w-xl font-display text-base italic leading-relaxed text-foreground/80 sm:text-lg"
         >
-          Ont l'immense joie de vous inviter à célébrer leur mariage
+          Nous serions ravis de vous inviter à célébrer avec nous le plus beau
+          jour de notre vie. Ce serait un honneur de vous compter parmi nous
+          en ce moment si important.
         </motion.p>
 
         <motion.div
