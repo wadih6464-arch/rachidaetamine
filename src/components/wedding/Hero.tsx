@@ -46,7 +46,7 @@ export function Hero() {
           transition={{ delay: 1.5, duration: 1.2 }}
           className="mt-4 font-script text-7xl leading-none text-gradient-gold sm:text-8xl md:text-9xl"
         >
-          Safa &amp; Mehdi
+          Rachida &amp; Amine
         </motion.h1>
 
         <motion.div
@@ -64,17 +64,6 @@ export function Hero() {
         >
           Ont l'immense joie de vous inviter à célébrer leur mariage
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 3, duration: 1 }}
-          className="mt-10 grid grid-cols-1 gap-2 text-sm uppercase tracking-[0.35em] text-foreground/65 sm:grid-cols-[1fr_auto_1fr] sm:gap-6"
-        >
-          <span className="font-display">La famille Sabik</span>
-          <span className="hidden sm:inline-block text-gold-deep" style={{ color: "oklch(0.62 0.14 70)" }}>✦</span>
-          <span className="font-display">La famille Maghrani</span>
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}

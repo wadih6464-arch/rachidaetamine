@@ -2,12 +2,6 @@ import { motion } from "framer-motion";
 
 const items = [
   {
-    icon: "❖",
-    label: "La date",
-    main: "Samedi",
-    sub: "13 Juin 2026",
-  },
-  {
     icon: "✦",
     label: "L'heure",
     main: "À partir",

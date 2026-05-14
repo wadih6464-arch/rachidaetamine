@@ -60,12 +60,9 @@ export function CurtainIntro({ onEnter }: Props) {
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 <p className="font-script text-5xl text-gold-soft sm:text-6xl" style={{ color: "oklch(0.88 0.09 85)" }}>
-                  Safa &amp; Mehdi
+                  Rachida &amp; Amine
                 </p>
                 <div className="my-6 h-px w-32" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.13 80), transparent)" }} />
-                <p className="font-display text-sm uppercase tracking-[0.4em]" style={{ color: "oklch(0.88 0.09 85)" }}>
-                  Une invitation royale
-                </p>
                 <button
                   onClick={handleEnter}
                   className="group mt-10 relative overflow-hidden rounded-full border px-10 py-3 font-display text-sm uppercase tracking-[0.3em] transition-all hover:scale-105"
