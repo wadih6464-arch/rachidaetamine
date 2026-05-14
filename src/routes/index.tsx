@@ -8,7 +8,6 @@ import { Countdown } from "@/components/wedding/Countdown";
 import { MapSection } from "@/components/wedding/MapSection";
 import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { Section } from "@/components/wedding/Section";
-import { Monogram } from "@/components/wedding/Monogram";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -80,22 +79,6 @@ function Index() {
           </p>
           <MapSection />
         </Section>
-
-        <footer className="relative px-6 py-20 text-center">
-          <div className="mx-auto flex max-w-md flex-col items-center">
-            <Monogram size={100} />
-            <p className="mt-6 font-script text-3xl text-gradient-gold">
-              Avec amour
-            </p>
-            <p className="mt-2 font-display text-sm uppercase tracking-[0.4em] text-foreground/60">
-              Rachida &amp; Amine
-            </p>
-            <div className="gold-divider mt-6 w-24" />
-            <p className="mt-4 text-xs tracking-[0.3em] text-foreground/40">
-              13 / 06 / 2026
-            </p>
-          </div>
-        </footer>
       </div>
     </main>
   );
