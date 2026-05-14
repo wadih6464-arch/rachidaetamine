@@ -47,7 +47,7 @@ export function Hero() {
           className="mt-4 flex flex-col items-center gap-2 leading-none text-gradient-gold"
         >
           <span className="font-script text-7xl sm:text-8xl md:text-9xl">Rachida</span>
-          <span className="font-display text-3xl italic opacity-80 sm:text-4xl md:text-5xl">&amp;</span>
+          <span className="font-script text-4xl italic opacity-80 sm:text-5xl md:text-6xl">and</span>
           <span className="font-script text-7xl sm:text-8xl md:text-9xl">Amine</span>
         </motion.h1>
 
