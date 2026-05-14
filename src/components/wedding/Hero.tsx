@@ -46,9 +46,9 @@ export function Hero() {
           transition={{ delay: 1.5, duration: 1.2 }}
           className="mt-4 flex flex-col items-center gap-2 leading-none text-gradient-gold"
         >
-          <span className="font-script text-7xl sm:text-8xl md:text-9xl">Rachida</span>
-          <span className="font-script text-4xl italic opacity-80 sm:text-5xl md:text-6xl">and</span>
-          <span className="font-script text-7xl sm:text-8xl md:text-9xl">Amine</span>
+          <span className="font-display text-6xl font-light tracking-wide sm:text-7xl md:text-8xl">Rachida</span>
+          <span className="font-script text-4xl opacity-80 sm:text-5xl md:text-6xl">and</span>
+          <span className="font-display text-6xl font-light tracking-wide sm:text-7xl md:text-8xl">Amine</span>
         </motion.h1>
 
         <motion.div

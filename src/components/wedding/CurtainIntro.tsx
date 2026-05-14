@@ -60,9 +60,9 @@ export function CurtainIntro({ onEnter }: Props) {
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 <div className="flex flex-col items-center gap-1 leading-none" style={{ color: "oklch(0.88 0.09 85)" }}>
-                  <span className="font-script text-6xl sm:text-7xl">Rachida</span>
-                  <span className="font-display text-2xl italic opacity-80 sm:text-3xl">&amp;</span>
-                  <span className="font-script text-6xl sm:text-7xl">Amine</span>
+                  <span className="font-display text-5xl font-light tracking-wide sm:text-6xl">Rachida</span>
+                  <span className="font-script text-3xl opacity-80 sm:text-4xl">and</span>
+                  <span className="font-display text-5xl font-light tracking-wide sm:text-6xl">Amine</span>
                 </div>
                 <div className="my-6 h-px w-32" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.13 80), transparent)" }} />
                 <button
