@@ -5,14 +5,21 @@ interface Props {
   onEnter: () => void;
 }
 
+type Phase = "closed" | "opening" | "revealed";
+
 export function CurtainIntro({ onEnter }: Props) {
-  const [opening, setOpening] = useState(false);
+  const [phase, setPhase] = useState<Phase>("closed");
   const [hidden, setHidden] = useState(false);
 
-  const handleEnter = () => {
-    setOpening(true);
-    onEnter();
-    setTimeout(() => setHidden(true), 2200);
+  const handleOpen = () => {
+    setPhase("opening");
+    onEnter(); // start music inside the user gesture
+    // reveal text once curtains have travelled
+    setTimeout(() => setPhase("revealed"), 1600);
+  };
+
+  const handleContinue = () => {
+    setHidden(true);
   };
 
   return (
@@ -20,44 +27,19 @@ export function CurtainIntro({ onEnter }: Props) {
       {!hidden && (
         <motion.div
           className="fixed inset-0 z-[100] overflow-hidden"
+          style={{ background: "oklch(0.12 0.04 25)" }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Left curtain */}
-          <motion.div
-            className="absolute inset-y-0 left-0 w-1/2"
-            style={{
-              background:
-                "repeating-linear-gradient(90deg, oklch(0.32 0.12 25), oklch(0.22 0.1 22) 6px, oklch(0.32 0.12 25) 14px), linear-gradient(90deg, oklch(0.18 0.08 22), oklch(0.34 0.13 25) 50%, oklch(0.18 0.08 22))",
-              backgroundBlendMode: "multiply",
-              boxShadow: "inset -40px 0 80px rgba(0,0,0,0.55)",
-            }}
-            initial={{ x: 0 }}
-            animate={{ x: opening ? "-105%" : 0 }}
-            transition={{ duration: 2.2, ease: [0.7, 0, 0.3, 1] }}
-          />
-          <motion.div
-            className="absolute inset-y-0 right-0 w-1/2"
-            style={{
-              background:
-                "repeating-linear-gradient(90deg, oklch(0.32 0.12 25), oklch(0.22 0.1 22) 6px, oklch(0.32 0.12 25) 14px), linear-gradient(270deg, oklch(0.18 0.08 22), oklch(0.34 0.13 25) 50%, oklch(0.18 0.08 22))",
-              backgroundBlendMode: "multiply",
-              boxShadow: "inset 40px 0 80px rgba(0,0,0,0.55)",
-            }}
-            initial={{ x: 0 }}
-            animate={{ x: opening ? "105%" : 0 }}
-            transition={{ duration: 2.2, ease: [0.7, 0, 0.3, 1] }}
-          />
-
-          {/* Center pelmet & button */}
+          {/* Invitation text — revealed AFTER curtains open */}
           <AnimatePresence>
-            {!opening && (
+            {phase === "revealed" && (
               <motion.div
                 className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
+                transition={{ duration: 1 }}
               >
                 <p
                   className="mb-6 max-w-xs font-display text-[10px] uppercase leading-relaxed tracking-[0.4em] sm:text-xs"
@@ -67,12 +49,27 @@ export function CurtainIntro({ onEnter }: Props) {
                   <br />
                   célébrer le mariage de
                 </p>
-                <div className="flex flex-col items-center gap-1 leading-none" style={{ color: "oklch(0.88 0.09 85)" }}>
-                  <span className="font-display text-5xl font-light tracking-wide sm:text-6xl">Rachida</span>
-                  <span className="font-script text-4xl leading-none opacity-90 sm:text-5xl">&amp;</span>
-                  <span className="font-display text-5xl font-light tracking-wide sm:text-6xl">Amine</span>
+                <div
+                  className="flex flex-col items-center gap-1 leading-none"
+                  style={{ color: "oklch(0.88 0.09 85)" }}
+                >
+                  <span className="font-display text-5xl font-light tracking-wide sm:text-6xl">
+                    Rachida
+                  </span>
+                  <span className="font-script text-4xl leading-none opacity-90 sm:text-5xl">
+                    &amp;
+                  </span>
+                  <span className="font-display text-5xl font-light tracking-wide sm:text-6xl">
+                    Amine
+                  </span>
                 </div>
-                <div className="my-6 h-px w-32" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.13 80), transparent)" }} />
+                <div
+                  className="my-6 h-px w-32"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent, oklch(0.78 0.13 80), transparent)",
+                  }}
+                />
                 <p
                   className="max-w-sm px-4 font-display text-[10px] uppercase leading-relaxed tracking-[0.3em] sm:text-xs"
                   style={{ color: "oklch(0.88 0.09 85 / 0.75)" }}
@@ -82,18 +79,81 @@ export function CurtainIntro({ onEnter }: Props) {
                   compter parmi nous en ce moment si important.
                 </p>
                 <button
-                  onClick={handleEnter}
-                  className="group mt-10 relative overflow-hidden rounded-full border px-10 py-3 font-display text-sm uppercase tracking-[0.3em] transition-all hover:scale-105"
+                  onClick={handleContinue}
+                  className="group relative mt-10 overflow-hidden rounded-full border px-10 py-3 font-display text-sm uppercase tracking-[0.3em] transition-all hover:scale-105"
                   style={{
                     borderColor: "oklch(0.78 0.13 80)",
                     color: "oklch(0.92 0.06 85)",
-                    background: "linear-gradient(135deg, oklch(0.32 0.12 25 / 0.4), oklch(0.22 0.1 22 / 0.6))",
+                    background:
+                      "linear-gradient(135deg, oklch(0.32 0.12 25 / 0.4), oklch(0.22 0.1 22 / 0.6))",
                     boxShadow: "0 0 30px oklch(0.78 0.13 80 / 0.4)",
                   }}
                 >
-                  <span className="relative z-10">Entrer</span>
+                  <span className="relative z-10">Découvrir</span>
                 </button>
-                <p className="mt-6 text-xs tracking-widest" style={{ color: "oklch(0.78 0.06 80 / 0.7)" }}>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Left curtain */}
+          <motion.div
+            className="absolute inset-y-0 left-0 z-20 w-1/2"
+            style={{
+              background:
+                "repeating-linear-gradient(90deg, oklch(0.32 0.12 25), oklch(0.22 0.1 22) 6px, oklch(0.32 0.12 25) 14px), linear-gradient(90deg, oklch(0.18 0.08 22), oklch(0.34 0.13 25) 50%, oklch(0.18 0.08 22))",
+              backgroundBlendMode: "multiply",
+              boxShadow: "inset -40px 0 80px rgba(0,0,0,0.55)",
+            }}
+            initial={{ x: 0 }}
+            animate={{ x: phase === "closed" ? 0 : "-105%" }}
+            transition={{ duration: 2.2, ease: [0.7, 0, 0.3, 1] }}
+          />
+          <motion.div
+            className="absolute inset-y-0 right-0 z-20 w-1/2"
+            style={{
+              background:
+                "repeating-linear-gradient(90deg, oklch(0.32 0.12 25), oklch(0.22 0.1 22) 6px, oklch(0.32 0.12 25) 14px), linear-gradient(270deg, oklch(0.18 0.08 22), oklch(0.34 0.13 25) 50%, oklch(0.18 0.08 22))",
+              backgroundBlendMode: "multiply",
+              boxShadow: "inset 40px 0 80px rgba(0,0,0,0.55)",
+            }}
+            initial={{ x: 0 }}
+            animate={{ x: phase === "closed" ? 0 : "105%" }}
+            transition={{ duration: 2.2, ease: [0.7, 0, 0.3, 1] }}
+          />
+
+          {/* Closed-state CTA on top of curtains */}
+          <AnimatePresence>
+            {phase === "closed" && (
+              <motion.div
+                className="absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, transition: { duration: 0.4 } }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                <p
+                  className="mb-8 font-script text-3xl sm:text-4xl"
+                  style={{ color: "oklch(0.88 0.13 80)" }}
+                >
+                  Bienvenue
+                </p>
+                <button
+                  onClick={handleOpen}
+                  className="group relative overflow-hidden rounded-full border px-10 py-3 font-display text-sm uppercase tracking-[0.3em] transition-all hover:scale-105"
+                  style={{
+                    borderColor: "oklch(0.78 0.13 80)",
+                    color: "oklch(0.92 0.06 85)",
+                    background:
+                      "linear-gradient(135deg, oklch(0.32 0.12 25 / 0.4), oklch(0.22 0.1 22 / 0.6))",
+                    boxShadow: "0 0 30px oklch(0.78 0.13 80 / 0.4)",
+                  }}
+                >
+                  <span className="relative z-10">Ouvrir les rideaux</span>
+                </button>
+                <p
+                  className="mt-6 text-xs tracking-widest"
+                  style={{ color: "oklch(0.78 0.06 80 / 0.7)" }}
+                >
                   ♪ avec musique douce
                 </p>
               </motion.div>

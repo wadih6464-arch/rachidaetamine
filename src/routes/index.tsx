@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { CurtainIntro } from "@/components/wedding/CurtainIntro";
 import { GoldParticles } from "@/components/wedding/GoldParticles";
-import { Hero } from "@/components/wedding/Hero";
 import { ScratchBalls } from "@/components/wedding/ScratchBalls";
 import { Details } from "@/components/wedding/Details";
 import { Countdown } from "@/components/wedding/Countdown";
@@ -58,8 +57,6 @@ function Index() {
       {entered && <MusicToggle playing={musicOn} onToggle={toggleMusic} />}
 
       <div className="relative z-10">
-        <Hero />
-
         <Section eyebrow="Save the date" title="Une date à révéler">
           <ScratchBalls />
         </Section>
