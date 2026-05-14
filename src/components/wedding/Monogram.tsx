@@ -71,7 +71,7 @@ export function Monogram({ size = 180, className = "" }: Props) {
           transition={{ delay: 1.2, duration: 1 }}
           style={{ letterSpacing: "0.05em" }}
         >
-          R<tspan dx="-6" fontSize="50" baselineShift="-4" fontStyle="italic">&amp;</tspan><tspan dx="-2">A</tspan>
+          R<tspan dx="4">A</tspan>
         </motion.text>
       </svg>
     </motion.div>
