@@ -1,40 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-
 interface Props {
   playing: boolean;
   onToggle: (playing: boolean) => void;
 }
 
-const SRC =
-  "https://cdn.pixabay.com/audio/2022/10/30/audio_347111d654.mp3"; // soft oriental ambient (royalty free)
-
 export function MusicToggle({ playing, onToggle }: Props) {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const a = new Audio(SRC);
-    a.loop = true;
-    a.volume = 0.35;
-    a.preload = "auto";
-    audioRef.current = a;
-    a.addEventListener("canplaythrough", () => setReady(true));
-    return () => {
-      a.pause();
-      audioRef.current = null;
-    };
-  }, []);
-
-  useEffect(() => {
-    const a = audioRef.current;
-    if (!a) return;
-    if (playing) {
-      a.play().catch(() => {});
-    } else {
-      a.pause();
-    }
-  }, [playing]);
-
   return (
     <button
       type="button"
@@ -46,7 +15,6 @@ export function MusicToggle({ playing, onToggle }: Props) {
         background: "oklch(0.985 0.012 85 / 0.7)",
         boxShadow: "0 4px 20px oklch(0.62 0.14 70 / 0.3)",
         color: "oklch(0.62 0.14 70)",
-        opacity: ready ? 1 : 0.6,
       }}
     >
       {playing ? (
