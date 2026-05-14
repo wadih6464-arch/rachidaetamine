@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CurtainIntro } from "@/components/wedding/CurtainIntro";
 import { GoldParticles } from "@/components/wedding/GoldParticles";
 import { Hero } from "@/components/wedding/Hero";
-import { ScratchCard } from "@/components/wedding/ScratchCard";
+import { ScratchBalls } from "@/components/wedding/ScratchBalls";
 import { Details } from "@/components/wedding/Details";
 import { Countdown } from "@/components/wedding/Countdown";
-import { Gallery } from "@/components/wedding/Gallery";
 import { MapSection } from "@/components/wedding/MapSection";
 import { MusicToggle } from "@/components/wedding/MusicToggle";
 import { Section } from "@/components/wedding/Section";
@@ -16,34 +15,53 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const MUSIC_SRC =
+  "https://cdn.pixabay.com/audio/2022/10/30/audio_347111d654.mp3";
+
 function Index() {
   const [entered, setEntered] = useState(false);
   const [musicOn, setMusicOn] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handleEnter = () => {
+    // Create + play audio inside the user gesture to satisfy autoplay policies
+    if (!audioRef.current) {
+      const a = new Audio(MUSIC_SRC);
+      a.loop = true;
+      a.volume = 0.35;
+      audioRef.current = a;
+    }
+    audioRef.current
+      .play()
+      .then(() => setMusicOn(true))
+      .catch(() => setMusicOn(false));
+    setEntered(true);
+  };
+
+  const toggleMusic = (next: boolean) => {
+    const a = audioRef.current;
+    if (!a) return;
+    if (next) {
+      a.play().then(() => setMusicOn(true)).catch(() => {});
+    } else {
+      a.pause();
+      setMusicOn(false);
+    }
+  };
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
       <GoldParticles />
 
-      <CurtainIntro
-        onEnter={() => {
-          setEntered(true);
-          setMusicOn(true);
-        }}
-      />
+      <CurtainIntro onEnter={handleEnter} />
 
-      {entered && <MusicToggle playing={musicOn} onToggle={setMusicOn} />}
+      {entered && <MusicToggle playing={musicOn} onToggle={toggleMusic} />}
 
       <div className="relative z-10">
         <Hero />
 
         <Section eyebrow="Save the date" title="Une date à révéler">
-          <div className="flex justify-center">
-            <ScratchCard />
-          </div>
-        </Section>
-
-        <Section eyebrow="Les détails" title="La célébration">
-          <Details />
+          <ScratchBalls />
         </Section>
 
         <Section eyebrow="Compte à rebours" title="Bientôt l'union">
@@ -55,8 +73,8 @@ function Index() {
           </div>
         </Section>
 
-        <Section eyebrow="Souvenirs & atmosphère" title="Galerie">
-          <Gallery />
+        <Section eyebrow="Les détails" title="La célébration">
+          <Details />
         </Section>
 
         <Section eyebrow="Le lieu" title="Palais Mimouna Polo">
@@ -73,11 +91,11 @@ function Index() {
               Avec amour
             </p>
             <p className="mt-2 font-display text-sm uppercase tracking-[0.4em] text-foreground/60">
-              Safa &amp; Mehdi
+              Rachida &amp; Amine
             </p>
             <div className="gold-divider mt-6 w-24" />
             <p className="mt-4 text-xs tracking-[0.3em] text-foreground/40">
-              13 · 06 · 2026
+              13 / 06 / 2026
             </p>
           </div>
         </footer>
