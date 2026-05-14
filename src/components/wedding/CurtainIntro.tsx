@@ -59,12 +59,28 @@ export function CurtainIntro({ onEnter }: Props) {
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
+                <p
+                  className="mb-6 max-w-xs font-display text-[10px] uppercase leading-relaxed tracking-[0.4em] sm:text-xs"
+                  style={{ color: "oklch(0.88 0.09 85 / 0.85)" }}
+                >
+                  Vous êtes cordialement invités à
+                  <br />
+                  célébrer le mariage de
+                </p>
                 <div className="flex flex-col items-center gap-1 leading-none" style={{ color: "oklch(0.88 0.09 85)" }}>
                   <span className="font-display text-5xl font-light tracking-wide sm:text-6xl">Rachida</span>
                   <span className="font-script text-4xl leading-none opacity-90 sm:text-5xl">&amp;</span>
                   <span className="font-display text-5xl font-light tracking-wide sm:text-6xl">Amine</span>
                 </div>
                 <div className="my-6 h-px w-32" style={{ background: "linear-gradient(90deg, transparent, oklch(0.78 0.13 80), transparent)" }} />
+                <p
+                  className="max-w-sm px-4 font-display text-[10px] uppercase leading-relaxed tracking-[0.3em] sm:text-xs"
+                  style={{ color: "oklch(0.88 0.09 85 / 0.75)" }}
+                >
+                  Nous serions ravis de vous inviter à célébrer avec nous le
+                  plus beau jour de notre vie. Ce serait un honneur de vous
+                  compter parmi nous en ce moment si important.
+                </p>
                 <button
                   onClick={handleEnter}
                   className="group mt-10 relative overflow-hidden rounded-full border px-10 py-3 font-display text-sm uppercase tracking-[0.3em] transition-all hover:scale-105"
