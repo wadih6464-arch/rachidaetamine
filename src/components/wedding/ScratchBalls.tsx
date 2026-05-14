@@ -99,7 +99,7 @@ function ScratchBall({ value, label, delay = 0 }: BallProps) {
       className="flex flex-col items-center"
     >
       <div
-        className="relative h-32 w-32 sm:h-40 sm:w-40"
+        className="relative h-20 w-20 sm:h-32 sm:w-32 md:h-40 md:w-40"
         style={{
           filter: "drop-shadow(0 12px 24px oklch(0.62 0.14 70 / 0.4))",
         }}
@@ -112,7 +112,7 @@ function ScratchBall({ value, label, delay = 0 }: BallProps) {
             border: "1px solid oklch(0.78 0.13 80 / 0.5)",
           }}
         >
-          <span className="font-script text-5xl text-gradient-gold sm:text-6xl">
+          <span className="font-script text-3xl text-gradient-gold sm:text-5xl md:text-6xl">
             {value}
           </span>
         </div>
@@ -188,11 +188,11 @@ function ScratchBall({ value, label, delay = 0 }: BallProps) {
 
 export function ScratchBalls() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14">
+    <div className="flex flex-nowrap items-center justify-center gap-2 sm:gap-8 md:gap-14">
       <ScratchBall value="13" label="Jour" delay={0} />
-      <span className="font-script text-4xl text-gradient-gold opacity-70">/</span>
+      <span className="font-script text-2xl text-gradient-gold opacity-70 sm:text-4xl">/</span>
       <ScratchBall value="06" label="Mois" delay={0.15} />
-      <span className="font-script text-4xl text-gradient-gold opacity-70">/</span>
+      <span className="font-script text-2xl text-gradient-gold opacity-70 sm:text-4xl">/</span>
       <ScratchBall value="2026" label="Année" delay={0.3} />
     </div>
   );
