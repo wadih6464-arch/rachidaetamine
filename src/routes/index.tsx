@@ -74,9 +74,6 @@ function Index() {
         </Section>
 
         <Section eyebrow="Le lieu" title="Palais Mimouna Polo">
-          <p className="mb-10 text-center font-display text-base italic text-foreground/70">
-            2 Rue de la Loire — un écrin royal pour célébrer notre union
-          </p>
           <MapSection />
         </Section>
       </div>
