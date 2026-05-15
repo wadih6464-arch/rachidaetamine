@@ -112,7 +112,7 @@ function ScratchBall({ value, label, delay = 0 }: BallProps) {
             border: "1px solid oklch(0.78 0.13 80 / 0.5)",
           }}
         >
-          <span className="font-display text-3xl text-gradient-gold sm:text-5xl md:text-6xl">
+          <span className="font-body text-3xl font-semibold tabular-nums text-gradient-gold sm:text-5xl md:text-6xl">
             {value}
           </span>
         </div>
